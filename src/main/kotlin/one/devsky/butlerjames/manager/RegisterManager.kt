@@ -20,6 +20,8 @@ object RegisterManager {
 
     private var loadedClasses = mapOf<String, Any>()
 
+    var commandsWithCategories = mapOf<String, String>()
+
     @OptIn(ExperimentalTime::class)
     fun JDABuilder.registerAll() : JDABuilder {
         val reflections = Reflections("one.devsky.butlerjames")
@@ -65,6 +67,8 @@ object RegisterManager {
                     val command = constructor.newInstance()
                     loadedClasses += clazz.simpleName to command
                     getItsLogger().info("Registered command class: ${command.javaClass.simpleName}")
+
+                    clazz.packageName.split(".").lastOrNull()?.let { commandsWithCategories += clazz.simpleName to it }
                 }
 
                 val command = loadedClasses[clazz.simpleName]

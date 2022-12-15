@@ -1,4 +1,4 @@
-package one.devsky.butlerjames.listeners
+package one.devsky.butlerjames.listeners.utility
 
 import de.fruxz.ascend.extension.logging.getItsLogger
 import net.dv8tion.jda.api.events.session.ReadyEvent

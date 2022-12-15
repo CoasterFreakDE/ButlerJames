@@ -1,4 +1,4 @@
-package one.devsky.butlerjames.listeners
+package one.devsky.butlerjames.listeners.`fun`
 
 import de.fruxz.ascend.extension.data.randomInt
 import de.fruxz.ascend.extension.time.year
