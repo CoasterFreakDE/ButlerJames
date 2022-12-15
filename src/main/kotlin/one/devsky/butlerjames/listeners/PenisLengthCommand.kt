@@ -9,6 +9,7 @@ import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 import one.devsky.butlerjames.annotations.SlashCommand
 import one.devsky.butlerjames.interfaces.HasOptions
+import kotlin.random.Random
 
 @SlashCommand("penislength", "Calculates the length of x's penis", true)
 class PenisLengthCommand: ListenerAdapter(), HasOptions {
@@ -44,8 +45,14 @@ class PenisLengthCommand: ListenerAdapter(), HasOptions {
 
         cm += Calendar.now().year - user.timeCreated.year
         cm +=  Calendar.now().year - user.timeJoined.year
-        cm += randomInt(0..5)
+        cm += randomInt(0..3, Random(user.idLong))
+        cm += randomInt(0..3, Random(guild!!.idLong))
 
-        reply("${user.asMention}'s Penis is ${cm}cm long.").queue()
+        val penisDrawing = if(cm > 0) {
+            "|${(0 until cm).joinToString("") { _ -> "=" }}D"
+        } else "|"
+
+        reply("${user.asMention}'s Penis is ${cm}cm long.\n" +
+                "Visualisation: `${penisDrawing}`").queue()
     }
 }
