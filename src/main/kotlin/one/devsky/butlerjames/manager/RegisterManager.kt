@@ -49,6 +49,10 @@ object RegisterManager {
 
         // Registering commands
         val commandsTime = measureTime {
+            // Delete all previous commands
+            updateCommands().complete()
+
+
             for (clazz in reflections.getTypesAnnotatedWith(SlashCommand::class.java)) {
                 val annotation = clazz.getAnnotation(SlashCommand::class.java)
                 val data = Commands.slash(annotation.name, annotation.description)

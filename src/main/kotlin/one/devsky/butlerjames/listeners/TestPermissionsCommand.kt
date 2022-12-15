@@ -39,9 +39,9 @@ class TestPermissionsCommand : ListenerAdapter(), HasSubcommands {
 
         val (hasPermissions, embed) = testForPermissions(channel.asTextChannel(), *permissions.toTypedArray())
         if (hasPermissions) {
-            reply("I have all the permissions").queue()
+            reply("I have all the permissions").setEphemeral(true).queue()
         } else {
-            replyEmbeds(embed!!.build()).queue()
+            replyEmbeds(embed!!.build()).setEphemeral(true).queue()
         }
     }
 

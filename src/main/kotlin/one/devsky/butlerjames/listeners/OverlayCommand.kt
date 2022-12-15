@@ -1,5 +1,6 @@
 package one.devsky.butlerjames.listeners
 
+import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import net.dv8tion.jda.api.interactions.commands.OptionType
@@ -8,6 +9,7 @@ import net.dv8tion.jda.api.utils.FileUpload
 import one.devsky.butlerjames.annotations.SlashCommand
 import one.devsky.butlerjames.extensions.overlayImage
 import one.devsky.butlerjames.interfaces.HasOptions
+import one.devsky.butlerjames.manager.testForPermissions
 import java.io.File
 import java.net.URL
 import javax.imageio.ImageIO
@@ -28,6 +30,18 @@ class OverlayCommand : ListenerAdapter(), HasOptions {
 
     override fun onSlashCommandInteraction(event: SlashCommandInteractionEvent) = with(event) {
         if(name != "overlay") return@with
+        val hidden = getOption("hidden")?.asBoolean ?: false
+
+        // Test for permissions
+        val (hasPermissions, embed) = testForPermissions(channel.asTextChannel(),
+            Permission.MESSAGE_ATTACH_FILES,
+            Permission.MESSAGE_EMBED_LINKS,
+            Permission.MESSAGE_SEND
+        )
+        if (!hasPermissions && !hidden) {
+            replyEmbeds(embed!!.build()).setEphemeral(true).queue()
+            return@with
+        }
 
         val baseUrl = getOption("base-url")?.asString
         val baseAttachment = getOption("base-attachment")?.asAttachment
@@ -36,7 +50,7 @@ class OverlayCommand : ListenerAdapter(), HasOptions {
         val topUrl = getOption("top-url")?.asString
         val topAttachment = getOption("top-attachment")?.asAttachment
 
-        val hidden = getOption("hidden")?.asBoolean ?: false
+
 
         if (baseUrl == null && baseAttachment == null && baseUser == null) {
             reply("You need to provide a background").setEphemeral(true).queue()
