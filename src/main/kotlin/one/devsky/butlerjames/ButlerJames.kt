@@ -13,8 +13,7 @@ class ButlerJames(token: String) {
         lateinit var instance: ButlerJames
     }
 
-
-    private val jda: JDA
+    val jda: JDA
 
     init {
         instance = this
