@@ -6,7 +6,6 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter
 
 class DisplayCurrentGuilds : ListenerAdapter() {
 
-
     override fun onReady(event: ReadyEvent) {
         event.jda.guilds.size
             .let { getItsLogger().info("${event.jda.selfUser.name} is now in $it guilds") }
