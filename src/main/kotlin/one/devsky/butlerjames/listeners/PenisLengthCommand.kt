@@ -53,6 +53,6 @@ class PenisLengthCommand: ListenerAdapter(), HasOptions {
         } else "|"
 
         reply("${user.asMention}'s Penis is ${cm}cm long.\n" +
-                "Visualisation: `${penisDrawing}`").queue()
+                "Visualisation: `${penisDrawing}`").setAllowedMentions(emptySet()).queue()
     }
 }

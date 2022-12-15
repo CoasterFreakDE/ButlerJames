@@ -20,7 +20,8 @@ val shadowDependencies = listOf(
     "net.oneandone.reflections8:reflections8:0.11.7",
     "io.github.cdimascio:dotenv-kotlin:6.4.0",
     "net.dv8tion:JDA:5.0.0-beta.2",
-    "com.github.TheFruxz:Ascend:11.0.0"
+    "com.github.TheFruxz:Ascend:11.0.0",
+    "io.github.serpro69:kotlin-faker:1.13.0-rc.4"
 )
 
 dependencies {

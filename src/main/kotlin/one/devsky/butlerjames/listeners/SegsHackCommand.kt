@@ -22,7 +22,7 @@ class SegsHackCommand : ListenerAdapter() {
         }
 
         reply("Send an image through discords GIF feature.\n" +
-                "After that type in `s/e/x`\n" +
+                "After that type in `s/e/gs`\n" +
                 "Your done!").setEphemeral(true).queue()
     }
 
