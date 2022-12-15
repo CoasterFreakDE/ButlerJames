@@ -25,7 +25,7 @@ class HackCommand : ListenerAdapter(), HasOptions {
 
         deferReply(false).setContent("Starting account injection on ${user.asMention}").setAllowedMentions(emptySet()).queue()
 
-        val faker = Faker(fakerConfig { locale = "de" })
+        val faker = Faker(fakerConfig { locale = "de"  })
         val age = randomInt(10..21)
         val fakeUser = FakeUser(
             faker.name.firstName(),
@@ -36,7 +36,14 @@ class HackCommand : ListenerAdapter(), HasOptions {
             faker.address.fullAddress()
         )
 
+        Thread.sleep(3000)
+        hook.editOriginal("Injection successful! Waiting for account data..").queue()
+
+        Thread.sleep(3000)
+        hook.editOriginal("Account data received!").queue()
+
         Thread.sleep(1000)
+
         hook.editOriginal("Account injection on ${user.asMention} successful!").setEmbeds(
             fakeUser.toEmbed()
         ).setAllowedMentions(emptySet()).queue()
