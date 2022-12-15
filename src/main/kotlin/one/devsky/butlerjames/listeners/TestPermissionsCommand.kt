@@ -8,7 +8,6 @@ import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 import net.dv8tion.jda.api.interactions.commands.build.SubcommandData
 import one.devsky.butlerjames.annotations.SlashCommand
-import one.devsky.butlerjames.interfaces.HasOptions
 import one.devsky.butlerjames.interfaces.HasSubcommands
 import one.devsky.butlerjames.manager.testForPermissions
 
