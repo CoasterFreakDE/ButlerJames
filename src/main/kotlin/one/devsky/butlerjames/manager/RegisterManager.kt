@@ -56,6 +56,7 @@ object RegisterManager {
             for (clazz in reflections.getTypesAnnotatedWith(SlashCommand::class.java)) {
                 val annotation = clazz.getAnnotation(SlashCommand::class.java)
                 val data = Commands.slash(annotation.name, annotation.description)
+                data.isNSFW = annotation.isNsfw
 
                 if (clazz.simpleName !in loadedClasses) {
                     val constructor = clazz.getDeclaredConstructor()
